@@ -1,0 +1,29 @@
+{
+  "name": "hunt-the-wumpus",
+  "version": "1.0.0",
+  "description": "hunt the wumpus game, recreation for web",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcamp0130/hunt-the-wumpus.git"
+  },
+  "keywords": [
+    "wumpus",
+    "web"
+  ],
+  "author": "arcamp0130",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arcamp0130/hunt-the-wumpus/issues"
+  },
+  "homepage": "https://github.com/arcamp0130/hunt-the-wumpus#readme",
+  "dependencies": {
+    "cytoscape": "^3.33.1",
+    "express": "^5.1.0"
+  }
+}
