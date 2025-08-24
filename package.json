@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node ./src/index.js"
+    "dev": "node --env-file=./.env ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/arcamp0130/hunt-the-wumpus#readme",
   "dependencies": {
     "cytoscape": "^3.33.1",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0"
   }
 }
