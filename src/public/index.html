@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hunt the Wumpus</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hunt the Wumpus</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to Hunt the Wumpus!</h1>
-    <p>Express is ready to start serving game files.</p>
+  <header>
+    <h1>Hunt the Wumpus</h1>
+    <div id="game-info">
+        <p>Estás en la cueva: <span id="player-location">1</span></p>
+        <p>Flechas restantes: <span id="arrows-left">1</span></p>
+    </div>
+  </header>
+  
+  <main>
+
+  </main>
+
+  <footer>
+    <p id="game-status">Bienvenido</p>
+  </footer>
+  
+  <script src="game.js"></script>
 </body>
 </html>
