@@ -1,12 +1,18 @@
-import express from "express"
+import express from "express";
+import { fileURLToPath } from "url";
+import path from "path";
 
 const app = express();
 const port = 3030;
 
-app.get("/", (req, res) => {
-    res.send("Hello World!")
+// Getting current filename and directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.get("/", (_, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.listen(port, () => {
-    console.log("Server running at " + port)
+    console.log(`Server running at http://localhost:${port}`);
 });
