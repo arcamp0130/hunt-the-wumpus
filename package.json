@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node ./src/index.js"
+    "dev": "vite",
+    "start": "node --env-file=./.env ./src/index.js",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,11 @@
   "homepage": "https://github.com/arcamp0130/hunt-the-wumpus#readme",
   "dependencies": {
     "cytoscape": "^3.33.1",
-    "express": "^5.1.0"
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "vite": "^7.1.3"
   }
 }
