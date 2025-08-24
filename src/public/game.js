@@ -241,3 +241,5 @@ console.log(HELP);
 
 //Start the game
 process.stdin.emit('data', first(world.player.room));
+
+//Elx
