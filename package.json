@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --env-file=./.env ./src/index.js"
+    "dev": "vite",
+    "start": "node --env-file=./.env ./src/index.js",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -26,5 +28,8 @@
     "cytoscape": "^3.33.1",
     "dotenv": "^17.2.1",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.3"
   }
 }
