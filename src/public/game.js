@@ -191,4 +191,10 @@ function getGameState(world) {
 //Export//
 //////////
 
-export { initGame, describeCurrentRoom, movePlayer, shootArrow, getGameState };
+export { 
+    initGame, 
+    describeCurrentRoom, 
+    movePlayer, 
+    shootArrow, 
+    getGameState 
+};
