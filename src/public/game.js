@@ -99,8 +99,10 @@ function describeCurrentRoom(world) {
   const wumpus = isNearby(world, "wumpus") ? "\nHueles algo terrible." : "";
   const bat = isNearby(world, "bat") ? "\nEscuchas un aleteo." : "";
 
-  return `Estás en la habitación ${Id.first(world.player.room)}
-Salidas hacia: ${world.player.room[1].join(", ")}${pit}${wumpus}${bat}`;
+  return `Anda con cuidado aventurero ${pit}${wumpus}${bat}`;
+
+  //return `Estás en la habitación ${Id.first(world.player.room)}
+//Salidas hacia: ${world.player.room[1].join(", ")}${pit}${wumpus}${bat}`;
 }
 //Moves the player to an adjacent room
 function movePlayer(world, roomId) {
