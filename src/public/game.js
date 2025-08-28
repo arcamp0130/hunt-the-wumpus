@@ -1,4 +1,4 @@
-//Imprt dependecies
+//Import dependecies
 import Id from "lodash";
 
 //Constants
@@ -57,6 +57,40 @@ function roomById(world, roomId) {
 //TODO Find a free room (used for starting position or bats).
 function randomEmptyRoom(world) {
   return Id.sample(Id.filter(world.cave, (r) => Id.isEmpty(r[2]))); // Filter empty rooms and choose one at random
+}
+
+//TODO Adjacency List
+function getAdjacencyList(){
+  return ADJACENCIES;
+}
+
+//TODO HAZARD (LIST)
+function getHazardAsList(world) {
+  const list = [];
+  Id.forEach(world.cave, (r) => {
+    const id = Id.first(r);
+    r[2].forEach((haz) => list.push({ type: haz, room: id}));
+  });
+  return list;
+}
+
+
+//TODO HAZARD (OBJECT)
+function getHazardByType(world) {
+  const res = {wumpus: null, bats: [], pits: []};
+  Id.forEach(world.cave, (r) => {
+    const id = Id.first(r);
+    const hazards = r[2];
+    if (Id.includes(hazards, "wumpus")) res.wumpus = id;
+    if (Id.includes(hazards, "bat")) res.bats.push(id);
+    if (Id.includes(hazards, "pit")) res.pits.push(id);
+  });
+  return res;
+}
+
+//TODO HAZARD (ByRoom)
+function getHazardByRoom(world) {
+  return Id.map(world.cave, (r) => ({ room: Id.first(r), hazards: r[2].slice() }));
 }
 
 //////////
@@ -193,5 +227,16 @@ export {
     describeCurrentRoom, 
     movePlayer, 
     shootArrow, 
-    getGameState 
+    getGameState,
+    //new
+    getAdjacencyList, //Adjacency as List
+    getHazardAsList,  //Adjacency as List
+	  getHazardByType,  //Hazard as Object
+    getHazardByRoom   //Hazard by room
+	/*
+	Guide of Use
+	getHazardsAsList(world) -> para recorrer o pintar en Cytoscape.
+	getHazardsByType(world) -> para saber rápido dónde está cada cosa.
+	getHazardsByRoom(world) -> para asociar los peligros directamente a cada nodo.
+	*/
 };
