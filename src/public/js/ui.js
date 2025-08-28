@@ -7,7 +7,8 @@ import {
   getAdjacencyList,
   getHazardAsList,
   getHazardByType,
-  getHazardByRoom
+  getHazardByRoom,
+  describeCurrentRoom
 } from "./game.js";
 
 // Inicializar el mundo
@@ -15,6 +16,7 @@ let world = initGame();
 
 // Exponer world para depuración en consola
 window.world = world;
+world.message = `Bienvenido. ${describeCurrentRoom(world)}`;
 
 // Función para actualizar el HTML con el estado actual del juego
 function render() {
@@ -25,12 +27,6 @@ function render() {
   document.getElementById("arrows-left").textContent = state.arrows;
   document.getElementById("game-status").textContent = state.message;
   document.getElementById("available-rooms").textContent = state.exits.join(", ");
-
-  // Debug extra (Hazards y adyacencia)
-  // document.getElementById("hazard-list").textContent = JSON.stringify(getHazardAsList(world), null, 2);
-  // document.getElementById("hazard-type").textContent = JSON.stringify(getHazardByType(world), null, 2);
-  // document.getElementById("hazard-room").textContent = JSON.stringify(getHazardByRoom(world), null, 2);
-  // document.getElementById("adjacency-list").textContent = JSON.stringify(getAdjacencyList(), null, 2);
 }
 
 // Render inicial

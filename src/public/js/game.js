@@ -233,7 +233,8 @@ export {
     getHazardAsList,  //Adjacency as List
 	  getHazardByType,  //Hazard as Object
     getHazardByRoom   //Hazard by room
-	/*
+	
+  /*
 	Guide of Use
 	getHazardsAsList(world) -> para recorrer o pintar en Cytoscape.
 	getHazardsByType(world) -> para saber rápido dónde está cada cosa.
