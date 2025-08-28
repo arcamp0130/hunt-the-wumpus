@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hunt the Wumpus</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunt the Wumpus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <header>
-    <h1>Hunt the Wumpus</h1>
-    <div id="game-info">
-        <p>Estás en la cueva: <span id="player-location">1</span></p>
-        <p>Flechas restantes: <span id="arrows-left">1</span></p>
-    </div>
-  </header>
-  
-  <main>
+    <header>
+        <h1>Hunt the Wumpus</h1>
+    </header>
 
-  </main>
+    <main>
+        <div class="canvas container">
+            <div class="game container" id="cy"></div>
+            <div class="final-message container">
+                <span id="game-final-message">Awating message...</span>
+            </div>
+        </div>
+        <div class="stats container">
+            <div class="stats-item">
+                <span class="description"><span class="material-symbols-outlined">location_on</span>Room</span>
+                <span class="stats-info" id="player-location">??</span>
+            </div>
+            <div class="stats-item">
+                <span class="description"><span class="material-symbols-outlined">explosion</span>Shoots</span>
+                <span class="stats-info" id="arrows-left">??</span>
+            </div>
+            <div class="stats-item">
+                <span class="description"><span class="material-symbols-outlined">conversion_path</span>To go</span>
+                <span class="stats-info" id="available-rooms">??</span>
+            </div>
+        </div>
+        <div class="controls container">
+            <button onclick="movePlayerTo()" id="travel-btn">Travel</button>
+            <button onclick="shootArrow()" id="shoot-btn">Shoot!</button>
+        </div>
+    </main>
 
-  <footer>
-    <p id="game-status">Bienvenido</p>
-  </footer>
-  
-  <script src="game.js"></script>
+    <script type="module" src="./js/ui.js"></script>
 </body>
+
 </html>
