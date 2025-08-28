@@ -128,3 +128,8 @@ button {
   padding: 0.5rem 1rem;
   min-width: 125px;
 }
+
+button:hover {
+  background-color: #292929;
+  transition: 100ms ease;
+}
