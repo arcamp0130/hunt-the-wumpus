@@ -25,7 +25,6 @@ function render() {
   // Información básica
   document.getElementById("player-location").textContent = state.playerRoom;
   document.getElementById("arrows-left").textContent = state.arrows;
-  document.getElementById("game-status").textContent = state.message;
   document.getElementById("available-rooms").textContent = state.exits.join(", ");
 }
 
@@ -63,3 +62,5 @@ window.getAdjacencyList = () => getAdjacencyList();
 window.getHazardAsList = () => getHazardAsList(world);
 window.getHazardByType = () => getHazardByType(world);
 window.getHazardByRoom = () => getHazardByRoom(world);
+
+console.log("state", getGameState(world));
