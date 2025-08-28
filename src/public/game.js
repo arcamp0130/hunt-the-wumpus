@@ -86,7 +86,7 @@ function initGame() {
       arrows: ARROWS, //Player starts with 3 arrows
     },
     gameOver: false,
-    message: "Bienenido a caza el Wumpus",
+    message: "Bienvenido a caza el Wumpus",
   };
 }
 //////////////
