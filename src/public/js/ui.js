@@ -1,66 +1,52 @@
-// Import logic game
-import {
-  initGame,
-  movePlayer,
-  shootArrow,
-  getGameState,
-  getAdjacencyList,
-  getHazardAsList,
-  getHazardByType,
-  getHazardByRoom,
-  describeCurrentRoom
-} from "./game.js";
+import game from "./game.js";
 
-// Inicializar el mundo
-let world = initGame();
-
-// Exponer world para depuración en consola
-window.world = world;
-world.message = `Bienvenido. ${describeCurrentRoom(world)}`;
+let world = game.init();
 
 // Función para actualizar el HTML con el estado actual del juego
 function render() {
-  const state = getGameState(world);
+    const state = game.getGameState(world);
 
-  // Información básica
-  document.getElementById("player-location").textContent = state.playerRoom;
-  document.getElementById("arrows-left").textContent = state.arrows;
-  document.getElementById("available-rooms").textContent = state.exits.join(", ");
+    // Información básica
+    document.getElementById("player-location").textContent = state.playerRoom;
+    document.getElementById("arrows-left").textContent = state.arrows;
+    document.getElementById("available-rooms").textContent = state.exits.join(", ");
 }
 
-// Render inicial
+// create game state
 render();
 
-/////////////////////////////
-// Funciones expuestas al global (window)
-/////////////////////////////
+/*
+Functions and objects to interact
+with game via browser console.
 
-// Mover jugador a la cueva del input
-window.movePlayerTo = () => {
-  const roomId = Number(document.getElementById("room-input").value);
-  if (!isNaN(roomId)) {
-    world = movePlayer(world, roomId);
-    render();
-  } else {
-    alert("Ingresa un número válido de cueva (0-14).");
-  }
+TODO:
+Remove debug functions in production.
+*/
+
+// Expose game world
+window.world = world;
+
+// Expose ./game.js functions for debugging
+window.getHazardAsList = () => game.getHazardAsList(world);
+window.getHazardByType = () => game.getHazardByType(world);
+window.getHazardByRoom = () => game.getHazardByRoom(world);
+
+// Move player to certain room
+window.moveTo = (room) => {
+    if (!isNaN(room) && room >= 0 && room < 15) {
+        world = game.movePlayer(world, room);
+        render();
+    } else {
+        alert("Ingresa un número válido de cueva (0-14).");
+    }
 };
 
-// Disparar flecha a la cueva del input
-window.shootArrow = () => {
-  const roomId = Number(document.getElementById("room-input").value);
-  if (!isNaN(roomId)) {
-    world = shootArrow(world, roomId);
-    render();
-  } else {
-    alert("Ingresa un número válido de cueva (0-14).");
-  }
+// Shoot arrow to certain room
+window.shootTo = (room) => {
+    if (!isNaN(room) && room >= 0 && room < 15) {
+        world = game.shootArrow(world, room);
+        render();
+    } else {
+        alert("Ingresa un número válido de cueva (0-14).");
+    }
 };
-
-// Exponer helpers al global
-window.getAdjacencyList = () => getAdjacencyList();
-window.getHazardAsList = () => getHazardAsList(world);
-window.getHazardByType = () => getHazardByType(world);
-window.getHazardByRoom = () => getHazardByRoom(world);
-
-console.log("state", getGameState(world));
