@@ -222,7 +222,7 @@ function getGameState(world) {
 //Export//
 //////////
 
-export default {
+export {
     adjacencyList,
     init,
     describeCurrentRoom,
