@@ -1,6 +1,6 @@
 import { gameManager } from "../managers/game.manager.js";
 import { graphManager } from "../managers/graph.manager.js";
-import { render } from "../ui.js"
+import ui from "../ui.js"
 
 /*
 Functions and objects to interact
@@ -18,7 +18,7 @@ window.cyto = graphManager.cy;
 window.moveTo = (room) => {
     if (!isNaN(room) && room >= 0 && room < 15) {
         gameManager.movePlayer(room);
-        render();
+        ui.update();
     } else {
         alert("Ingresa un número válido de cueva (0-14).");
     }
@@ -28,7 +28,7 @@ window.moveTo = (room) => {
 window.shootTo = (room) => {
     if (!isNaN(room) && room >= 0 && room < 15) {
         gameManager.shootArrow(room);
-        render();
+        ui.update();
     } else {
         alert("Ingresa un número válido de cueva (0-14).");
     }
