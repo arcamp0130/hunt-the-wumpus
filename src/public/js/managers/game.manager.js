@@ -155,16 +155,17 @@ class GameManager {
         // Looking for danger in current room.
         // ...
 
-        if (this.isInRoom("pit")) {
-            this.game.message = "Bad luck!";
-            this.game.alert = "You\'ve fell to a pit and have died...";
+        // Arranging by importance [Wumpus, Pit, Bat]
+        if (this.isInRoom("wumpus")) {
+            this.game.message = "Oh no!";
+            this.game.alert = "The feared wumpus have killed you.";
             this.game.isOver = true;
             return;
         }
 
-        if (this.isInRoom("wumpus")) {
-            this.game.message = "Oh no!";
-            this.game.alert = "The feared wumpus have killed you.";
+        if (this.isInRoom("pit")) {
+            this.game.message = "Bad luck!";
+            this.game.alert = "You\'ve fell to a pit and have died...";
             this.game.isOver = true;
             return;
         }
