@@ -61,6 +61,7 @@ class GameManager {
 
     init() {
         this.game = this.#createGame();
+        this.updateGameAlert();
         return this.game;
     }
 
@@ -125,11 +126,22 @@ class GameManager {
         }
     }
 
-    //Moves the player to an adjacent room
-    movePlayer(roomId) {
-        // Reset game stats
+    updateGameAlert() {
+        const hazards = this.getNearbyHazards();
+        const areHazardsNear = hazards.bat === true || hazards.pit === true || hazards.wumpus === true;
+        this.game.alert = areHazardsNear ? "Be carefull..." : "Nothing wrong here";
+        return;
+    }
+
+    #resetStats() {
         this.game.alert = null;
         this.game.message = null;
+        return;
+    }
+
+    //Moves the player to an adjacent room
+    movePlayer(roomId) {
+        this.#resetStats();
 
         //If target room is not adjacent, return with an error menssage
         if (!this.roomIsAdjacent(roomId)) {
@@ -164,8 +176,9 @@ class GameManager {
             return;
         }
 
-        this.game.alert = "Be carefull...";
+        this.updateGameAlert();
     }
+    
     //Being able to shoot the wumpus
     shootArrow(roomId) {
         if (!this.roomIsAdjacent(roomId)) { //If the room is not adjacent, shooting is not possible
@@ -191,8 +204,7 @@ class GameManager {
         //The wumpus may move to player's room
         if (ld.random(0, 2) > 0) {
             let newWumpusRoom = this.randomEmptyRoom();
-            // ld.find(this.game.cave, ld.partial(this.isInRoom, this.game, "wumpus"))[2] = [];
-            
+
             newWumpusRoom[2] = ["wumpus"];
             // If, after shoot fails, wumpus moves to player's location
             if (ld.isEqual(this.game.player.room, newWumpusRoom)) {
@@ -202,7 +214,7 @@ class GameManager {
                 return;
             }
         }
-        
+
         this.game.alert = "Be careful... The wumpus is moving, looking for your life.";
         return;
     }
@@ -215,9 +227,10 @@ class GameManager {
             arrows: this.game.player.arrows,
             isOver: this.game.isOver,
             message: this.game.message,
+            alert: this.game.alert,
+            hazards: this.getNearbyHazards()
         };
     }
-
 }
 
 const gameManager = new GameManager();
