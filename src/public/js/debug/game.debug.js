@@ -1,4 +1,4 @@
-import { gameManager } from "../game.js";
+import { gameManager } from "../managers/game.manager.js";
 import { graphManager } from "../managers/graph.manager.js";
 import { render } from "../ui.js"
 

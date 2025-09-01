@@ -1,4 +1,4 @@
-import { adjacencyList } from "../game.js";
+import { adjacencyList } from "./game.manager.js";
 import cytoscape from "cytoscape";
 
 // creating a manager to manipulate the game's graph
