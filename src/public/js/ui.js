@@ -1,4 +1,5 @@
 import * as game from "./game.js";
+import { graphManager } from "./managers/graph.manager.js";
 
 // Función para actualizar el HTML con el estado actual del juego
 function render() {
@@ -11,6 +12,7 @@ function render() {
 }
 
 let world = game.init();
+graphManager.init();
 
 // create game state
 render();
