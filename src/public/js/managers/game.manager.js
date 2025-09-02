@@ -1,6 +1,6 @@
 //Import dependecies
 import ld from "lodash";
-// import { world } from "./ui";
+import { graphManager } from "./graph.manager";
 
 // Dodecahedron-shaped adjacency list
 const adjacencyList = [
@@ -148,10 +148,11 @@ class GameManager {
             this.game.alert = "Can\'t move to this room";
             return;
         }
-
         // Move player to specified room
+        const lastRoom = this.game.player.room[0]
         this.game.player.room = this.roomById(roomId);
-
+        graphManager.updateGraph(lastRoom, roomId);
+        
         // Looking for danger in current room.
         // ...
 
@@ -171,9 +172,12 @@ class GameManager {
         }
 
         if (this.isInRoom("bat")) {
-            this.game.player.room = this.randomEmptyRoom();
+            const randRoom = this.randomEmptyRoom();
+            this.game.player.room = randRoom;
+            graphManager.updateGraph(roomId, randRoom[0]);
+
             this.game.alert =
-                `Unexpected bats have moved you to room ${this.game.player.room}`;
+                `Unexpected bats have moved you to room ${this.game.player.room[0]}`;
             return;
         }
 

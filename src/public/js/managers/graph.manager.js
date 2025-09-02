@@ -1,4 +1,4 @@
-import { adjacencyList } from "./game.manager.js";
+import { adjacencyList, gameManager } from "./game.manager.js";
 import cytoscape from "cytoscape";
 
 // creating a manager to manipulate the game's graph
@@ -34,7 +34,7 @@ class GraphManager {
             // JSON parse for each node
             (_, index) => ({
                 // using checked attribute to mark visited nodes
-                data: { id: `${index}`, checked: false },
+                data: { id: `${index}`, isPlayer: false, checked: false},
                 position: this.nodePositions[`${index}`],
                 locked: true
             })
@@ -78,7 +78,13 @@ class GraphManager {
                 style: {
                     'background-color': '#444',
                     'transition-property': 'background-color',
-                    'transition-duration': '0.5s'
+                    'transition-duration': '0.3s'
+                }
+            },
+            {
+                selector: 'node[?isPlayer]',
+                style: {
+                    'background-color': '#73b11c'
                 }
             },
             {
@@ -107,7 +113,27 @@ class GraphManager {
             style: style
         });
 
+        this.cy.$id(`${gameManager.game.player.room[0]}`).data('isPlayer', true)
+
         return this.cy;
+    }
+
+    checkUpNode(id) {
+        id = id || gameManager.game.player.room[0]
+        this.cy.$id(`${id}`).data('checked', true);
+        return;
+    }
+
+    changePlayerNode(oldId, newId) {
+        this.cy.$id(`${oldId}`).data('isPlayer', false);
+        this.cy.$id(`${newId}`).data('isPlayer', true);
+        return;
+    }
+
+    updateGraph(oldNode, newNode) {
+        this.checkUpNode();
+        this.changePlayerNode(oldNode, newNode);
+        return;
     }
 }
 const graphManager = new GraphManager();
