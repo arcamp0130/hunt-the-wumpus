@@ -129,7 +129,16 @@ class GameManager {
     updateGameAlert() {
         const hazards = this.getNearbyHazards();
         const areHazardsNear = hazards.bat === true || hazards.pit === true || hazards.wumpus === true;
-        this.game.alert = areHazardsNear ? "Be carefull..." : "Nothing wrong here";
+        if (areHazardsNear) {
+            this.game.alert = "Be carefull...You got:";
+            this.game.alert += hazards.bat ? " bats" : "";
+            this.game.alert += hazards.pit ? " pits" : "";
+            this.game.alert += hazards.wumpus ? " the wumpus" : "";
+            this.game.alert += " near you."
+            return;
+        }
+
+        this.game.alert = "Nothing wrong here";
         return;
     }
 
@@ -177,7 +186,7 @@ class GameManager {
             this.game.isOver = true;
             return;
         }
-        
+
         if (this.isInRoom("bat")) {
             graphManager.setNodeProperty(roomId, "hazard", "bat");
             const randRoom = this.randomEmptyRoom();
@@ -191,7 +200,7 @@ class GameManager {
 
         this.updateGameAlert();
     }
-    
+
     //Being able to shoot the wumpus
     shootArrow(roomId) {
         if (!this.roomIsAdjacent(roomId)) { //If the room is not adjacent, shooting is not possible
