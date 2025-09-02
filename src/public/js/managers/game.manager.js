@@ -196,6 +196,7 @@ class GameManager {
     shootArrow(roomId) {
         if (!this.roomIsAdjacent(roomId)) { //If the room is not adjacent, shooting is not possible
             this.game.alert = "Can\'t shoot to this room";
+            return;
         }
 
         // If room is valid, shoot and decrease
@@ -206,12 +207,14 @@ class GameManager {
             this.game.message = "You won!";
             this.game.alert = "You\'ve killed the feared wumpus... like a boss...";
             this.game.isOver = true;
+            return;
         }
 
         //If player runs out of arrows
         if (this.game.player.arrows == 0) {
             this.game.message = "Job, only had a bro";
             this.game.alert = "You\'ve ran out of shoots, you're getting killed.";
+            return;
         }
 
         //The wumpus may move to player's room
