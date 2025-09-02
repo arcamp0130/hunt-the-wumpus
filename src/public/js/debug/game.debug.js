@@ -1,6 +1,6 @@
 import { gameManager } from "../managers/game.manager.js";
 import { graphManager } from "../managers/graph.manager.js";
-import ui from "../ui.js"
+import { inputManager } from "../managers/input.manager.js";
 
 /*
 Functions and objects to interact
@@ -18,7 +18,7 @@ window.graph = graphManager;
 window.moveTo = (room) => {
     if (!isNaN(room) && room >= 0 && room < 15) {
         gameManager.movePlayer(room);
-        ui.update();
+        inputManager.updateStats();
     } else {
         alert("Ingresa un número válido de cueva (0-14).");
     }
@@ -28,7 +28,7 @@ window.moveTo = (room) => {
 window.shootTo = (room) => {
     if (!isNaN(room) && room >= 0 && room < 15) {
         gameManager.shootArrow(room);
-        ui.update();
+        inputManager.updateStats();
     } else {
         alert("Ingresa un número válido de cueva (0-14).");
     }

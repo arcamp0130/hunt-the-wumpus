@@ -1,30 +1,9 @@
 import { gameManager } from "./managers/game.manager.js";
 import { graphManager } from "./managers/graph.manager.js";
 import { inputManager } from "./managers/input.manager.js";
-const messageContainer = document.querySelector(".final-message")
 
-// Updating game information and relevating to player
-function update() {
-    // Core information for player
-    document.getElementById("player-location").textContent = gameManager.game.player.room[0];
-    document.getElementById("arrows-left").textContent = gameManager.game.player.arrows;
-    document.getElementById("available-rooms").textContent = gameManager.game.player.room[1].join(', ');
-    document.getElementById("game-alert").textContent = gameManager.game.alert;
-
-    if (gameManager.game.isOver) {
-        messageContainer.style.display = "flex"
-        document.getElementById("game-final-message").textContent = gameManager.game.message;
-        inputManager.shootBtn.disabled = true;
-        inputManager.travelBtn.disabled = true;
-    }
-    return;
-}
-
+// Starting game by initializing managers and refreshing stats
 gameManager.init();
 graphManager.init();
 inputManager.init();
-
-// create game state
-update();
-
-export default { update };
+inputManager.updateStats();
