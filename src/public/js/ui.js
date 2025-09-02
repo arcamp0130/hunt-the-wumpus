@@ -1,6 +1,6 @@
 import { gameManager } from "./managers/game.manager.js";
 import { graphManager } from "./managers/graph.manager.js";
-
+import { inputManager } from "./managers/input.manager.js";
 const messageContainer = document.querySelector(".final-message")
 
 // Updating game information and relevating to player
@@ -20,6 +20,7 @@ function update() {
 
 gameManager.init();
 graphManager.init();
+inputManager.init();
 
 // create game state
 update();
