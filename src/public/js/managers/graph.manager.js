@@ -6,6 +6,7 @@ class GraphManager {
     constructor() {
         this.cy = null;
         this.container = 'cy';
+        this.lastTapped = null;
         this.nodePositions = {
             '0': { x: 625, y: 125 },
             '1': { x: 700, y: 225 },
@@ -114,6 +115,21 @@ class GraphManager {
         });
 
         this.cy.$id(`${gameManager.game.player.room[0]}`).data('isPlayer', true)
+
+        /// Adding cytoscape event listeners
+        // Store last selected node
+        this.cy.on('tap', 'node', (e) => {
+            const tappedNode = e.target.id();
+            if (this.lastTapped !== tappedNode)
+                this.lastTapped = tappedNode;
+        });
+
+        // Only set null when user unselects node without selecting another one
+        this.cy.on('unselect', 'node', (e) => {
+            const unselectedNode = e.target.id();
+            if(this.lastTapped === unselectedNode && this.cy.$(':selected').length === 0)
+                this.lastTapped = null
+        });
 
         return this.cy;
     }
