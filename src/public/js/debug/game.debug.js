@@ -12,7 +12,7 @@ Remove debug functions in production.
 
 // Exposing gameManager and Cytoscape to browser console
 window.world = gameManager;
-window.cyto = graphManager.cy;
+window.graph = graphManager;
 
 // Move player to certain room
 window.moveTo = (room) => {
