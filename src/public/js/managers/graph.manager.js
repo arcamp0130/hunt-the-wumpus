@@ -35,7 +35,12 @@ class GraphManager {
             // JSON parse for each node
             (_, index) => ({
                 // using checked attribute to mark visited nodes
-                data: { id: `${index}`, isPlayer: false, checked: false},
+                data: {
+                    id: `${index}`,
+                    isPlayer: false,
+                    checked: false,
+                    hazard: null
+                },
                 position: this.nodePositions[`${index}`],
                 locked: true
             })
@@ -89,6 +94,24 @@ class GraphManager {
                 }
             },
             {
+                selector: 'node[hazard = "bat"]',
+                style: {
+                    'background-color': '#501a52'
+                }
+            },
+            {
+                selector: 'node[hazard = "pit"]',
+                style: {
+                    'background-color': '#141b5e'
+                }
+            },
+            {
+                selector: 'node[hazard = "wumpus"]',
+                style: {
+                    'background-color': '#bd760b'
+                }
+            },
+            {
                 selector: 'edge',
                 style: {
                     'width': 7,
@@ -114,7 +137,7 @@ class GraphManager {
             style: style
         });
 
-        this.cy.$id(`${gameManager.game.player.room[0]}`).data('isPlayer', true)
+        this.cy.$id(`${gameManager.game.player.room[0]}`).data({ 'isPlayer': true, 'checked': true })
 
         /// Adding cytoscape event listeners
         // Store last selected node
@@ -127,11 +150,16 @@ class GraphManager {
         // Only set null when user unselects node without selecting another one
         this.cy.on('unselect', 'node', (e) => {
             const unselectedNode = e.target.id();
-            if(this.lastTapped === unselectedNode && this.cy.$(':selected').length === 0)
+            if (this.lastTapped === unselectedNode && this.cy.$(':selected').length === 0)
                 this.lastTapped = null
         });
 
         return this.cy;
+    }
+
+    setNodeProperty(id, property, value) {
+        this.cy.$id(`${id}`).data(`${property}`, value)
+        return;
     }
 
     checkUpNode(id) {

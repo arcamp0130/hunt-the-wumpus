@@ -152,12 +152,13 @@ class GameManager {
         const lastRoom = this.game.player.room[0]
         this.game.player.room = this.roomById(roomId);
         graphManager.updateGraph(lastRoom, roomId);
-        
+
         // Looking for danger in current room.
         // ...
 
         // Arranging by importance [Wumpus, Pit, Bat]
         if (this.isInRoom("wumpus")) {
+            graphManager.setNodeProperty(roomId, "hazard", "wumpus")
             this.game.message = "Oh no!";
             this.game.alert = "The feared wumpus have killed you.";
             this.game.isOver = true;
@@ -165,13 +166,20 @@ class GameManager {
         }
 
         if (this.isInRoom("pit")) {
+            const newNode = graphManager.cy.$id(`${roomId}`)
+            if (newNode.data().hazard === null) {
+                this.game.alert = "This\' a pit. Don\'t pass here again.";
+                graphManager.setNodeProperty(roomId, "hazard", "pit")
+                return
+            }
             this.game.message = "Bad luck!";
             this.game.alert = "You\'ve fell to a pit and have died...";
             this.game.isOver = true;
             return;
         }
-
+        
         if (this.isInRoom("bat")) {
+            graphManager.setNodeProperty(roomId, "hazard", "bat");
             const randRoom = this.randomEmptyRoom();
             this.game.player.room = randRoom;
             graphManager.updateGraph(roomId, randRoom[0]);
