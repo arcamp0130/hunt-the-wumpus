@@ -14,6 +14,8 @@ function update() {
     if (gameManager.game.isOver) {
         messageContainer.style.display = "flex"
         document.getElementById("game-final-message").textContent = gameManager.game.message;
+        inputManager.shootBtn.disabled = true;
+        inputManager.travelBtn.disabled = true;
     }
     return;
 }

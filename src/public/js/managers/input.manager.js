@@ -1,3 +1,7 @@
+import ui from "../ui.js";
+import { graphManager } from "./graph.manager.js";
+import { gameManager } from "./game.manager.js";
+
 class InputManager {
     constructor() {
         this.travelBtn = document.querySelector("#travel-btn");
@@ -5,18 +9,21 @@ class InputManager {
     }
 
     init() {
-        this.travelBtn.addEventListener("click", (e) => { this.movePlayer(e) });
-        this.shootBtn.addEventListener("click", (e) => { this.shootArrow(e) });
+        this.travelBtn.addEventListener("click", (e) => this.movePlayer(e));
+        this.shootBtn.addEventListener("click", (e) => this.shootArrow(e));
     }
 
     movePlayer(e) {
-        // Handling player traveling
-        console.log("Moving player!");
+        if (graphManager.lastTapped !== null)
+            gameManager.movePlayer(parseInt(graphManager.lastTapped));
+
+        ui.update();
     }
 
     shootArrow(e) {
-        // Handling arrow shooting
-        console.log("Shooting arrow!");
+        if (graphManager.lastTapped !== null)
+            gameManager.shootArrow(parseInt(graphManager.lastTapped));
+        ui.update();
     }
 
 }
