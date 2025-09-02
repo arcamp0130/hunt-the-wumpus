@@ -58,19 +58,27 @@ main {
   display: none;
   justify-content: center;
   align-items: center;
-  background-color: #0005;
+  background-color: #000D;
   z-index: 10;
 }
 
-.stats {
+.stats.container {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.information.container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
   max-width: 400px;
   flex-direction: row;
   align-items: center;
-  gap: 2rem;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 1rem 0 ;
   background: radial-gradient(circle at top right, #2c3e50, #0000, #0000);
 }
 
@@ -99,11 +107,25 @@ main {
   font-weight: 600;
 }
 
+.alert.container {
+    display: contents;
+    width: 100%;
+    align-items: center;
+}
+
 #game-final-message {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
+  color: #5e84aa;
+}
+
+#game-alert {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0.5rem;
 }
 
 header {

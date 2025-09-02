@@ -24,30 +24,38 @@
         <div class="canvas container">
             <div class="game container" id="cy"></div>
             <div class="final-message container">
-                <span id="game-final-message">Awating message...</span>
+                <p id="game-final-message">Awating message...</p>
             </div>
         </div>
         <div class="stats container">
-            <div class="stats-item">
-                <span class="description"><span class="material-symbols-outlined">location_on</span>Room</span>
-                <span class="stats-info" id="player-location">??</span>
+            <div class="alert container">
+                <span id="game-alert">
+                    Awaiting alert
+                </span>
             </div>
-            <div class="stats-item">
-                <span class="description"><span class="material-symbols-outlined">explosion</span>Shoots</span>
-                <span class="stats-info" id="arrows-left">??</span>
-            </div>
-            <div class="stats-item">
-                <span class="description"><span class="material-symbols-outlined">conversion_path</span>To go</span>
-                <span class="stats-info" id="available-rooms">??</span>
+            <div class="information container">
+                <div class="stats-item">
+                    <span class="description"><span class="material-symbols-outlined">location_on</span>Room</span>
+                    <span class="stats-info" id="player-location">??</span>
+                </div>
+                <div class="stats-item">
+                    <span class="description"><span class="material-symbols-outlined">explosion</span>Shoots</span>
+                    <span class="stats-info" id="arrows-left">??</span>
+                </div>
+                <div class="stats-item">
+                    <span class="description"><span class="material-symbols-outlined">conversion_path</span>To go</span>
+                    <span class="stats-info" id="available-rooms">??</span>
+                </div>
             </div>
         </div>
         <div class="controls container">
-            <button onclick="movePlayerTo()" id="travel-btn">Travel</button>
-            <button onclick="shootArrow()" id="shoot-btn">Shoot!</button>
+            <button id="travel-btn">Travel</button>
+            <button id="shoot-btn">Shoot!</button>
         </div>
     </main>
 
-    <script type="module" src="./js/ui.js"></script>
+    <script type="module" src="./js/inits.js"></script>
+    <script type="module" src="./js/debug/game.debug.js"></script>
 </body>
 
 </html>
